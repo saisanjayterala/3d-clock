@@ -1,6 +1,7 @@
 const secondHand = document.querySelector('.second-hand');  
 const minuteHand = document.querySelector('.minute-hand');  
 const hourHand = document.querySelector('.hour-hand');  
+const dateDisplay = document.querySelector('.date-display');
 
 function setDate() {  
     const now = new Date();  
@@ -16,6 +17,11 @@ function setDate() {
     const hours = now.getHours();  
     const hoursDegrees = ((hours / 12) * 360) + ((minutes / 60) * 30) + 90;  
     hourHand.style.transform = `rotate(${hoursDegrees}deg)`;  
+
+    // Set the date display
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateString = now.toLocaleDateString('en-US', options);
+    dateDisplay.textContent = dateString;
 }  
 
 setInterval(setDate, 1000);  
